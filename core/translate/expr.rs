@@ -919,6 +919,26 @@ pub fn translate_expr(
                         ScalarFunc::Cast => {
                             unreachable!("this is always ast::Expr::Cast")
                         }
+                        ScalarFunc::Changes => {
+                            let reg = program.alloc_register();
+                            program.emit_insn(Insn::Function {
+                                constant_mask: 0,
+                                start_reg: reg,
+                                dest: target_register,
+                                func: func_ctx,
+                            });
+                            Ok(target_register)
+                        }
+                        ScalarFunc::ChangesTotal => {
+                            let reg = program.alloc_register();
+                            program.emit_insn(Insn::Function {
+                                constant_mask: 0,
+                                start_reg: reg,
+                                dest: target_register,
+                                func: func_ctx,
+                            });
+                            Ok(target_register)
+                        }
                         ScalarFunc::Char => {
                             let start_reg = translate_variable_sized_function_parameter_list(
                                 program,

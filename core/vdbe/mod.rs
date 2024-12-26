@@ -2294,6 +2294,12 @@ impl Program {
                                 let result = exec_cast(&reg_value_argument, &reg_value_type.value);
                                 state.registers[*dest] = result;
                             }
+                            ScalarFunc::Changes => {
+                                state.registers[*dest] = todo!();
+                            }
+                            ScalarFunc::ChangesTotal => {
+                                state.registers[*dest] = todo!();
+                            }
                             ScalarFunc::Char => {
                                 let reg_values =
                                     state.registers[*start_reg..*start_reg + arg_count].to_vec();

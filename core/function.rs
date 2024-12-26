@@ -52,6 +52,8 @@ impl AggFunc {
 #[derive(Debug, Clone, PartialEq)]
 pub enum ScalarFunc {
     Cast,
+    Changes,
+    ChangesTotal,
     Char,
     Coalesce,
     Concat,
@@ -97,6 +99,8 @@ impl Display for ScalarFunc {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let str = match self {
             ScalarFunc::Cast => "cast".to_string(),
+            ScalarFunc::Changes => "changes".to_string(),
+            ScalarFunc::ChangesTotal => "total_changes".to_string(),
             ScalarFunc::Char => "char".to_string(),
             ScalarFunc::Coalesce => "coalesce".to_string(),
             ScalarFunc::Concat => "concat".to_string(),
