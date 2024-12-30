@@ -304,6 +304,8 @@ impl Func {
             "sum" => Ok(Func::Agg(AggFunc::Sum)),
             "total" => Ok(Func::Agg(AggFunc::Total)),
             "char" => Ok(Func::Scalar(ScalarFunc::Char)),
+            "changes" => Ok(Func::Scalar(ScalarFunc::Changes)),
+            "total_changes" => Ok(Func::Scalar(ScalarFunc::ChangesTotal)),
             "coalesce" => Ok(Func::Scalar(ScalarFunc::Coalesce)),
             "concat" => Ok(Func::Scalar(ScalarFunc::Concat)),
             "concat_ws" => Ok(Func::Scalar(ScalarFunc::ConcatWs)),

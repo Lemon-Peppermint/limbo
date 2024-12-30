@@ -575,6 +575,8 @@ pub struct ProgramState {
     ended_coroutine: bool, // flag to notify yield coroutine finished
     regex_cache: RegexCache,
     interrupted: bool,
+    last_change: i64,
+    total_changes: i64,
 }
 
 impl ProgramState {
@@ -591,6 +593,8 @@ impl ProgramState {
             ended_coroutine: false,
             regex_cache: RegexCache::new(),
             interrupted: false,
+            last_change: 0,
+            total_changes: 0,
         }
     }
 
@@ -2295,10 +2299,10 @@ impl Program {
                                 state.registers[*dest] = result;
                             }
                             ScalarFunc::Changes => {
-                                state.registers[*dest] = todo!();
+                                state.registers[*dest] = OwnedValue::Integer(state.last_change);
                             }
                             ScalarFunc::ChangesTotal => {
-                                state.registers[*dest] = todo!();
+                                state.registers[*dest] = OwnedValue::Integer(state.total_changes);
                             }
                             ScalarFunc::Char => {
                                 let reg_values =
